@@ -4,6 +4,6 @@
 #include <string>
 
 namespace tts {
-std::string pack(const std::string &text);
-std::string tts(const std::string &text);
+std::string pack(const std::string &text, const std::string &voice);
+std::string tts(const std::string &text, const std::string &voice);
 } // namespace tts

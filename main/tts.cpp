@@ -121,7 +121,7 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb,
 
 namespace tts {
 
-std::string pack(const std::string &text) {
+std::string pack(const std::string &text, const std::string &voice) {
   auto root = json::parse(R"(
 	                       {
 		                     "model":"speech-02-hd",
@@ -130,7 +130,7 @@ std::string pack(const std::string &text) {
 		                     "language_boost":"auto",
 		                     "output_format":"hex",
 		                     "voice_setting":{
-			                   "voice_id":"male-qn-qingse",
+			                   "voice_id":"tianxin_xiaoling",
 			                   "speed":1,
 			                   "vol":1,
 			                   "pitch":0,
@@ -147,10 +147,13 @@ std::string pack(const std::string &text) {
   if (text.size() > 0) {
     root["text"] = text;
   }
+  if (voice.size() > 0) {
+    root["voice_setting"]["voice_id"] = voice;
+  }
   return root.dump();
 }
 
-std::string tts(const std::string &text) {
+std::string tts(const std::string &text, const std::string &voice) {
   auto *config = config::get();
   CURL *curl;
   CURLcode res;
@@ -182,7 +185,7 @@ std::string tts(const std::string &text) {
     curl_easy_setopt(curl, CURLOPT_POST, 1L);
 
     // 设置POST数据
-    const std::string &data = pack(text);
+    const std::string &data = pack(text, voice);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
 
     // 设置回调函数处理响应

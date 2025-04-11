@@ -17,7 +17,8 @@
 class EdgeRender {
 public:
   EdgeRender();
-  int load(const std::string &baseDir, const std::string &modelDir);
+  int load(const std::string &role);
+  int checkModel(const std::string &role);
 
   std::string render(const std::string &wav);
   void getMsg(std::string &msg);

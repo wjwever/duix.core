@@ -15,11 +15,10 @@ using namespace std;
 int main() {
   std::string wav = getarg("", "-w", "--wav");
   std::string role = getarg("siyao", "-r", "--role");
-  std::string baseDir = "gj_dh_res";
 
   auto render = std::make_shared<EdgeRender>();
-  PLOGD << "load " << baseDir << " role:" << role;
-  render->load(baseDir, role);
+  PLOGD << "role: " << role;
+  render->load(role);
   std::thread th(&EdgeRender::render, render.get(), wav);
   std::string data;
   while (render and render->done() == false) {

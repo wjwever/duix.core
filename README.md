@@ -1,5 +1,7 @@
 # 简介
-工作需要，想找一个低成本（cpu可驱动）的数字人驱动方案，调研到硅基智能的[GitHub - GuijiAI/duix.ai](https://github.com/GuijiAI/duix.ai)，体验下来口型效果、cpu上驱动速度都还不错。于是基于官方的android sdk，改造了可以在pc上运行的代码，方便后续扩展其他的其他的用途。不过遗憾的是，目前仅支持支持使用官网提供的形象，定制新形象需要给硅基付费。
+* 工作需要，想找一个低成本（cpu可驱动）的数字人驱动方案，调研到硅基智能的[GitHub - GuijiAI/duix.ai](https://github.com/GuijiAI/duix.ai)，体验下来数字人播报效果还不错、关键是人家只需要cpu就能跑！！
+* 于是基于官方的android sdk，改造了可以在pc上运行的代码，方便后续扩展其他的其他的用途。
+* 不过遗憾的是，目前仅支持支持使用官网提供的形象，定制新形象需要给硅基付费。
 
 
 <table class="center">

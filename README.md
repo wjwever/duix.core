@@ -1,11 +1,20 @@
 # 简介
-
 工作需要，想找一个低成本（cpu可驱动）的数字人驱动方案，调研到硅基智能的[GitHub - GuijiAI/duix.ai](https://github.com/GuijiAI/duix.ai)，体验下来口型效果、cpu上驱动速度都还不错。于是基于官方的android sdk，改造了可以在pc上运行的代码，方便后续扩展其他的其他的用途。不过遗憾的是，目前仅支持支持使用官网提供的形象，定制新形象需要给硅基付费。
 
-<video width="320" height="240" controls>
-  <source src="conf/hello.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+<table class="center">
+    
+<tr>
+    <td width=50% style="border: none">
+        <video controls loop src="https://github.com/user-attachments/assets/fc45527c-1014-4d2e-afde-cd5123e3bb9f" muted="false"></video>
+    </td>
+    <td width=50% style="border: none">
+        <video controls loop src="https://github.com/user-attachments/assets/556f4e7f-5191-49eb-bc39-6bf8c991d7fd" muted="false"></video>
+    </td>
+</tr>
+
+</table>
+
 
 ## ubuntu 22.04
 
@@ -50,6 +59,8 @@ bash conf/curl.sh
 
 # 计划
 
-- [ ] 添加前端
 - [ ] 定制新形象需要收费，需要找到一个支持形象的方案
 - [ ] 卡通形象支持
+- [ ] 支持macos
+- [ ] 添加前端展示页面
+

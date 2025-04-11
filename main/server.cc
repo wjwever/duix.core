@@ -48,7 +48,7 @@ int main() {
     auto wav = tts::tts(text, voice);
 
     auto render = std::make_shared<EdgeRender>();
-    render->load(baseDir, role);
+    render->load(role);
 
     // 保持连接打开，手动控制响应
     res.set_chunked_content_provider(

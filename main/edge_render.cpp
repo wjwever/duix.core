@@ -8,10 +8,12 @@
 
 #include "aesmain.h"
 #include "block_queue.h"
+#include "config.h"
 #include <clog.h>
 #include <edge_render.h>
 #include <filesystem>
 #include <fstream>
+#include <mutex>
 #include <nlohmann/json.hpp>
 #include <opencv2/opencv.hpp>
 #include <unistd.h>
@@ -36,7 +38,53 @@ EdgeRender::EdgeRender() {
   _done.store(false);
 }
 
-int EdgeRender::load(const std::string &baseDir, const std::string &modelDir) {
+int EdgeRender::checkModel(const std::string &role) {
+  static std::mutex mx;
+  std::lock_guard<std::mutex> lock(mx);
+
+  fs::path model = "gj_dh_res";
+  std::string url = "https://cdn.guiji.ai/duix/location/gj_dh_res.zip";
+  if (fs::exists(model) == false) {
+    std::string cmd = "wget " + url + ";unzip gj_dh_res.zip";
+    std::system(cmd.c_str());
+    if (fs::exists(model) == false) {
+      PLOGD << "failed to run command:" << cmd;
+      return -1;
+    }
+  }
+
+  auto conf = config::get();
+  if (conf->roles.count(role) == 0) {
+    PLOGD << "Not support role: " << role << " use default role";
+    url = conf->roles["XiaoXuan"];
+  } else {
+    url = conf->roles[role];
+  }
+
+  fs::path roleDir = "roles/" + role;
+  if (fs::exists(roleDir) == false) {
+    std::string zipName = fs::path(url).filename();
+    std::string roleName = zipName.substr(0, zipName.length() - 4);
+    std::string cmd = "mkdir -p roles";
+    std::system(cmd.c_str());
+    cmd = "wget " + url + ";" + "unzip " + zipName + ";" + "mv " + roleName +
+          " " + roleDir.string();
+    std::system(cmd.c_str());
+    if (fs::exists(roleDir) == false) {
+      PLOGD << "failed to run:" << cmd;
+      return -2;
+    }
+  }
+
+  return 0;
+}
+
+int EdgeRender::load(const std::string &role) {
+  std::string baseDir = "gj_dh_res";
+  std::string modelDir = "roles/" + role;
+  if (checkModel(role) != 0) {
+    return -1;
+  };
   for (const auto &p : _baseMD5Map) {
     auto &key = p.first;
     auto &value = p.second;

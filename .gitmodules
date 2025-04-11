@@ -1,0 +1,6 @@
+[submodule "modules/json"]
+	path = modules/json
+	url = https://github.com/nlohmann/json
+[submodule "modules/getopt"]
+	path = modules/getopt
+	url = https://github.com/r-lyeh-archived/getopt

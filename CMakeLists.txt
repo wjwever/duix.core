@@ -35,7 +35,7 @@ message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 # message(STATUS "JPEG_LIBRARIES=${JPEG_LIBRARIES}")
 
 
-find_package(OpenMP REQUIRED)
+#find_package(OpenMP REQUIRED)
 
 
 
@@ -82,7 +82,7 @@ target_link_libraries(server
     CURL::libcurl
     onnxruntime
     ncnn
-    OpenMP::OpenMP_CXX
+#OpenMP::OpenMP_CXX
     turbojpeg
     ${OpenCV_LIBS}
 )
@@ -96,7 +96,7 @@ target_link_libraries(offline
     CURL::libcurl
     onnxruntime
     ncnn
-    OpenMP::OpenMP_CXX
+#OpenMP::OpenMP_CXX
     turbojpeg
     ${OpenCV_LIBS}
 )

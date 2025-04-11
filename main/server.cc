@@ -30,7 +30,7 @@ int main() {
   }
 
   if (config->valid() == false) {
-    PLOGE << "config invalid" << conf;
+    PLOGE << "config invalid:" << conf;
     return 0;
   }
 

@@ -45,7 +45,7 @@ int main() {
     std::string voice = root.value("voice", "male-qn-qingse");
 
     std::string baseDir = "gj_dh_res";
-    auto wav = tts::tts(text);
+    auto wav = tts::tts(text, voice);
 
     auto render = std::make_shared<EdgeRender>();
     render->load(baseDir, role);

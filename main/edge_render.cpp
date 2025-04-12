@@ -249,13 +249,13 @@ std::string EdgeRender::render(const std::string &input) {
     _videoPack.push(mat, i);
     double ratio = 4000 * i / wavDuration;
     json root;
-    root["progress"] = std::to_string(ratio) + "%";
+    root["progress"] = ratio;
     _queue.push(root.dump() + "\n");
   }
 
   json root;
   root["video"] = _videoPack.addWav(wav);
-  _queue.push(root.dump() + "\n");
+  _queue.push(root.dump());
   _done.store(true);
   return root["video"];
 }

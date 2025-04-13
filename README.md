@@ -65,6 +65,6 @@ bash conf/curl.sh
 - [ ] 定制新形象需要收费，需要找到一个支持扩展形象的方案
 - [ ] 卡通形象支持
 - [ ] 支持macos
-- [ ] 数字人短视频合成
-- [ ] 数字人实时驱动
+- [x] 数字人短视频合成，https://github.com/wjwever/avatar_short_video
+- [ ] 数大模型实时驱动
 

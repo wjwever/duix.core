@@ -45,7 +45,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/base
-    ${CMAKE_SOURCE_DIR}/main
+    ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/aisdk
     ${CMAKE_SOURCE_DIR}/modules/json/include
     ${CMAKE_SOURCE_DIR}/aes
@@ -72,8 +72,8 @@ file(GLOB DIGIT_C ${CMAKE_SOURCE_DIR}/digit/*.c)
 file(GLOB BASE_C ${CMAKE_SOURCE_DIR}/base/*.c)
 file(GLOB BASE_CPP ${CMAKE_SOURCE_DIR}/base/*.cpp)
 file(GLOB AISDK_CPP ${CMAKE_SOURCE_DIR}/aisdk/*.cpp)
-file(GLOB MAIN_CPP ${CMAKE_SOURCE_DIR}/main/*.cpp)
-add_executable(server ${CMAKE_SOURCE_DIR}/main/server.cc ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
+file(GLOB MAIN_CPP ${CMAKE_SOURCE_DIR}/src/*.cpp)
+add_executable(server ${CMAKE_SOURCE_DIR}/src/server.cc ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
 target_link_libraries(server
     avformat
     avcodec
@@ -87,7 +87,7 @@ target_link_libraries(server
     ${OpenCV_LIBS}
 )
 
-add_executable(offline ${CMAKE_SOURCE_DIR}/main/offline.cc ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
+add_executable(offline ${CMAKE_SOURCE_DIR}/src/offline.cc ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
 target_link_libraries(offline
     avformat
     avcodec

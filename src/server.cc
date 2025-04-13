@@ -35,7 +35,8 @@ int main() {
     return 0;
   }
 
-  std::string IP = localIP();
+  std::string IP = getPublicIP();
+  PLOGD << "PublicIP:" << IP;
   httplib::Server svr;
 
   std::string cmd = "mkdir -p video";
@@ -101,7 +102,7 @@ int main() {
         th.detach();
       });
 
-  PLOGD << "serve at http://localhost:8080";
+  PLOGD << "serve at http://" << IP << ":8080";
   svr.listen("0.0.0.0", 8080);
   curl_global_cleanup();
   return 0;

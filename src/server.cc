@@ -89,9 +89,10 @@ int main() {
                     data = root.dump();
                   }
                 } catch (...) {
-                  data = "http://" + IP + ":8080/video/tmp.mp4";
+                  // data = "http://" + IP + ":8080/video/tmp.mp4";
                 }
                 if (data.size() > 0) {
+                  PLOGD << data;
                   sink.write(data.data(), data.size());
                 }
               }

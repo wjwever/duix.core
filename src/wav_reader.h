@@ -1,6 +1,6 @@
 /*************************************************************************
     > File Name: wav_reader.h
-    > Author: wangjiawei
+    > Author: 1216451203@qq.com
     > Mail: 1216451203@qq.com
     > Created Time: 2025年03月11日 星期二 22时52分59秒
  ************************************************************************/
@@ -94,7 +94,7 @@ inline std::string fixWav(const std::string &wav) {
                          "/fix_" +
                          std::filesystem::path(wav).filename().string();
 
-    PLOGD << "fix " << wav << "to" << newWav;
+    PLOGI << "fix " << wav << "to" << newWav;
 
     char *content = new char[fileSize];
     file.seekg(0, file.beg);
@@ -120,6 +120,6 @@ inline std::string fixWav(const std::string &wav) {
     outfile.close();
     return newWav;
   }
-  PLOGD << "fix " << wav << " to" << wav;
+  PLOGI << "fix " << wav << " to" << wav;
   return wav;
 }

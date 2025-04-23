@@ -56,6 +56,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/third/onnxruntime-linux-x64-1.21.0/include
     ${CMAKE_SOURCE_DIR}/third/turbojpeg/include
     ${CMAKE_SOURCE_DIR}/modules/getopt/
+    ${CMAKE_SOURCE_DIR}/modules/websocketpp/
 )
 
 link_directories(
@@ -73,8 +74,13 @@ file(GLOB BASE_C ${CMAKE_SOURCE_DIR}/base/*.c)
 file(GLOB BASE_CPP ${CMAKE_SOURCE_DIR}/base/*.cpp)
 file(GLOB AISDK_CPP ${CMAKE_SOURCE_DIR}/aisdk/*.cpp)
 file(GLOB MAIN_CPP ${CMAKE_SOURCE_DIR}/src/*.cpp)
-add_executable(server ${CMAKE_SOURCE_DIR}/src/server.cc ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
-target_link_libraries(server
+
+
+add_library(render STATIC ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
+
+add_executable(offline ${CMAKE_SOURCE_DIR}/src/offline.cc)
+target_link_libraries(offline
+	render
     avformat
     avcodec
     avutil
@@ -82,13 +88,14 @@ target_link_libraries(server
     CURL::libcurl
     onnxruntime
     ncnn
-#OpenMP::OpenMP_CXX
+	#OpenMP::OpenMP_CXX
     turbojpeg
     ${OpenCV_LIBS}
 )
 
-add_executable(offline ${CMAKE_SOURCE_DIR}/src/offline.cc ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
-target_link_libraries(offline
+add_executable(http_server ${CMAKE_SOURCE_DIR}/src/http_server.cc)
+target_link_libraries(http_server
+	render	
     avformat
     avcodec
     avutil
@@ -96,7 +103,22 @@ target_link_libraries(offline
     CURL::libcurl
     onnxruntime
     ncnn
-#OpenMP::OpenMP_CXX
+	#OpenMP::OpenMP_CXX
+    turbojpeg
+    ${OpenCV_LIBS}
+)
+
+add_executable(ws_server ${CMAKE_SOURCE_DIR}/src/ws_server.cc)
+target_link_libraries(ws_server
+	render
+    avformat
+    avcodec
+    avutil
+    swscale
+    CURL::libcurl
+    onnxruntime
+    ncnn
+	#OpenMP::OpenMP_CXX
     turbojpeg
     ${OpenCV_LIBS}
 )

@@ -1,4 +1,5 @@
 #include "tts.h"
+#include "util.h"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -70,7 +71,7 @@ static std::string uuid() {
   return uuidStr.substr(0, 32); // 截取32位作为简化的UUID
 }
 
-static std::string writeWav(const std::string &bytes) {
+static std::string writeWav(const std::string &bytes, const std::string &text) {
   std::error_code ec;
   std::filesystem::create_directory("audio", ec);
 
@@ -154,6 +155,12 @@ std::string pack(const std::string &text, const std::string &voice) {
 }
 
 std::string tts(const std::string &text, const std::string &voice) {
+  Timer t("tts " + text);
+  std::string wav = "./audio/" + text + ".wav";
+  if (std::filesystem::exists(wav)) {
+    return wav;
+  }
+
   auto *config = config::get();
   CURL *curl;
   CURLcode res;
@@ -203,7 +210,7 @@ std::string tts(const std::string &text, const std::string &voice) {
       // 打印响应数据
       // printf("%s\n", chunk.memory);
       auto root = json::parse(chunk.memory);
-      wavPath = writeWav(root["data"]["audio"]);
+      wavPath = writeWav(root["data"]["audio"], text);
     }
 
     // 清理

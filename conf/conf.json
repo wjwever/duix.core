@@ -2,5 +2,9 @@
 	"minimax" : {
 		"groupId" : "",
 		"apiKey": ""
-	}
+	},
+	"lmUrl" : "https://api.moonshot.cn/v1",
+	"lmApiKey" : "your api key",
+	"lmModel" : "moonshot-v1-8k",
+	"lmPrompt" : "你是一个智能助手,性格可爱,善于助人,每次回复要求：口语化的回复,不要使用mardown的标记格式,不要带表情包，不要超过30个字"
 }

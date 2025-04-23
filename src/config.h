@@ -11,6 +11,15 @@ public:
   bool valid();
   std::string groupId = "";
   std::string apiKey = "";
+  // std::string lmUrl = "https://api.deepseek.com/chat/completions";
+  // std::string lmApiKey = "";
+  // std::string lmModel = "deepseek-chat";
+  std::string lmUrl = "https://api.moonshot.cn/v1";
+  std::string lmApiKey = "";
+  std::string lmModel = "moonshot-v1-8k";
+  std::string lmPrompt =
+      "你是一个智能助手,性格可爱,善于助人,每次回复要求：口语化的回复,"
+      "不要使用mardown的标记格式,不要带表情包，不要超过30个字";
   std::map<std::string, std::string> roles = {
       {"Andrew", "https://digital-public.obs.cn-east-3.myhuaweicloud.com/"
                  "dhp-tools/dhp-tools/651705983152197/61025/"

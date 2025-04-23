@@ -1,6 +1,6 @@
 /*************************************************************************
     > File Name: main.cpp
-    > Author: wangjiawei
+    > Author: 1216451203@qq.com
     > Mail: 1216451203@qq.com
     > Created Time: 2025年03月12日 星期三 20时59分11秒
  ************************************************************************/
@@ -36,12 +36,13 @@ int main() {
   }
 
   std::string IP = getPublicIP();
-  PLOGD << "PublicIP:" << IP;
+  PLOGI << "PublicIP:" << IP;
   httplib::Server svr;
 
   std::string cmd = "mkdir -p video";
   std::system(cmd.c_str());
   svr.set_mount_point("/video", "./video");
+  svr.set_mount_point("/audio", "./audio");
 
   // 处理 OPTIONS 预检请求
   svr.Options("/task_sse",
@@ -54,7 +55,7 @@ int main() {
   svr.Post(
       "/task_sse", [&](const httplib::Request &req, httplib::Response &res) {
         // parse request
-        PLOGD << "REQ:" << req.body;
+        PLOGI << "REQ:" << req.body;
         auto root = json::parse(req.body);
         std::string text = root.value("text", "请问有什么可以帮你的吗");
         std::string role = root.value("role", "siyao");
@@ -92,7 +93,7 @@ int main() {
                   // data = "http://" + IP + ":8080/video/tmp.mp4";
                 }
                 if (data.size() > 0) {
-                  PLOGD << data;
+                  PLOGI << data;
                   sink.write(data.data(), data.size());
                 }
               }
@@ -103,7 +104,7 @@ int main() {
         th.detach();
       });
 
-  PLOGD << "serve at http://" << IP << ":8080";
+  PLOGI << "serve at http://" << IP << ":8080";
   svr.listen("0.0.0.0", 8080);
   curl_global_cleanup();
   return 0;

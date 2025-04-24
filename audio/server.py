@@ -165,11 +165,14 @@ async def main():
         "0.0.0.0",
         8765,
         ping_interval=None,
-		ping_timeout=None    # 无超时限制
+        ping_timeout=None    # 无超时限制
     )
     print("WebSocket server started on ws://0.0.0.0:8765")
     await server.wait_closed()
 
 if __name__ == "__main__":
-    import numpy as np  # Required for audio buffer handling
+    asr = ASR.recognizer("test.wav")
+    if asr != "关注自我成长，享受生活。":
+        print("asr self test error, please check")
+        exit(0)
     asyncio.get_event_loop().run_until_complete(main())

@@ -1,0 +1,167 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafc;
+  color: #595354;
+  height:100%;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 10px 40px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header > .logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header > .logo-container > .logo-img {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.header > .logo-container > .logo-text {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.header > .logo-container > .logo-text > .logo-highlight {
+  color: #65a9e5;
+}
+
+.content-container {
+  width: 100%;
+  height: calc(100vh - 89px);
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.active-users-panel {
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid #cddfe7;
+}
+
+.panel-title {
+  margin: 10px 0 0 0;
+  padding-left: 30px;
+  font-weight: 500;
+  font-size: 18px;
+  border-bottom: 1px solid #cddfe7;
+  padding-bottom: 10px;
+}
+
+.active-user {
+  padding: 10px 30px;
+  border-bottom: 1px solid #cddfe7;
+  cursor: pointer;
+  user-select: none;
+}
+
+.active-user:hover {
+  background-color: #e8e9eb;
+  transition: background-color 0.5s ease;
+}
+
+.active-user--selected {
+  background-color: #fff;
+  border-right: 5px solid #65a9e5;
+  font-weight: 500;
+  transition: all 0.5s ease;
+}
+
+.video-chat-container {
+  flex : 1;
+  display: flex;
+  justify-content: center;
+}
+
+.connected { 
+  background-color: #d4edda; 
+  color: #155724; 
+}
+
+.disconnected { 
+  background-color: #f8d7da; 
+  color: #721c24; 
+}
+
+
+.video-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  flex:1;
+}
+
+.local-video {
+  /*position: absolute;*/
+  border: 1px solid #cddfe7;
+  /*bottom: 60px;*/
+  /*right: 40px;*/
+  /*box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);*/
+  border-radius: 5px;
+  width: 100%;
+  height: 40%;
+}
+
+#messages {  
+  height: 200px;
+  border: 1px solid #ccc; 
+  overflow-y: scroll; 
+  padding: 10px; 
+}
+
+.device-list { 
+  margin: 15px 0; 
+  bottom:10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#audioInput{
+  flex : 1;
+}
+
+.button {
+  flex : 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.com-button {
+  width: 80px;
+  height: 80px;
+  border: none;
+  border-radius: 40px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  background-size: cover;
+  outline: none;
+  transition: all 0.3s;
+ }
+
+/* 默认拨打状态的背景（绿色） */
+.call-state{
+  background-color: #4CAF50;
+  /*background-image: url('call-icon.png');*;
+  /* 你的拨打图标 */
+}
+
+/* 接通后的背景（红色） */
+.hangup-state {
+  background-color: #F44336;
+  /*background-image: url('hangup-icon.png');*/
+  /* 你的挂断图标 */
+}

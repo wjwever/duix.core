@@ -225,7 +225,7 @@ function connectWebSocket() {
   const wsScheme = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
   const wsUrl = wsScheme + window.location.host + '/ws';
 
-  ws = new WebSocket("ws://localhost:9090");
+  ws = new WebSocket("ws://localhost:6001");
 
   ws.onopen = () => {
     lastFpsUpdate = performance.now();
@@ -248,7 +248,7 @@ function connectAudioWebSocket() {
         return
     }
 
-    audioWs = new WebSocket("ws://localhost:8765");
+    audioWs = new WebSocket("ws://localhost:6002");
     audioWs.onopen = () => {
         logMessage("audio websocket server connected!")
     };

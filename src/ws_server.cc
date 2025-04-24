@@ -184,10 +184,11 @@ int main() {
 
   std::string cmd = "mkdir -p video";
   std::system(cmd.c_str());
-  svr.set_mount_point("/video", "./video");
-  svr.set_mount_point("/audio", "./audio");
+  svr.set_mount_point("/video", "video");
+  svr.set_mount_point("/audio", "audio");
   std::thread httpth(
-      [&svr] { svr.listen("0.0.0.0", 8080); }); // fix later, http never exits
+      [&svr] { svr.listen("0.0.0.0", 6000); }); // fix later, http never exits
+  PLOGD << "http server start at 6000";
 
   server ws_server;
   ws_server.set_access_channels(websocketpp::log::alevel::none);
@@ -234,10 +235,10 @@ int main() {
 
   ws_server.set_message_handler(bind(&on_message, &ws_server, ::_1, ::_2));
 
-  ws_server.listen(9090);
+  ws_server.listen(6001);
   ws_server.start_accept();
 
-  PLOGI << "WebSocket Server started on port 9090";
+  PLOGI << "WebSocket Server started on port 6001";
   ws_server.run();
   curl_global_cleanup();
   return 0;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dogeller</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo-container">
+          <img src="./img/doge.png" alt="doge logo" class="logo-img" />
+          <h1 class="logo-text">
+            Doge<span class="logo-highlight">ller</span>
+          </h1>
+        </div>
+      </header>
+      <div class="content-container">
+        <!--left-->
+        <div class="active-users-panel" id="active-user-container">
+          <h3 class="panel-title">Active Users:</h3>
+        </div>
+        <!--mid-->
+        <div class="video-chat-container">
+          <canvas id="canvas" width="540" height="960"></canvas>
+        </div>
+        <!--right-->
+        <div class="video-info-container">
+			    <video autoplay muted class="local-video" id="local-video"></video>
+          <div id="messages"></div>
+          <div class="device-list">
+            <!-- <button id="refreshBtn">Refresh Microphone</button> -->
+            <label for="audioInput">Microphone:</label>
+            <select id="audioInput" disabled>
+              <option value="">-- Loading devices --</option>
+            </select>
+          </div>
+          <div class="button">
+            <button id="comButton" class="com-button call-state" onclick="toggleCall()">Talk</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>

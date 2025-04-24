@@ -1,21 +1,18 @@
 # duix.ai.core
-Hello everyone, this project is dedicated to a **lightweight and cheap** digital human dialogue system, with the goal of running easily on a machine without a GPU.
-Here is our example:
+Hello everyone! this project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
+**lightweight**:  The project runs without gpus </br>
+**cheap**:  The project's functions should be deployed locally as much as possible instead of calling commercial APIs </br>
 
-<table class="center">
-<tr>
-    <td heigh=50vh width=50% style="border: none">
-        <video controls loop src="https://github.com/user-attachments/assets/fc45527c-1014-4d2e-afde-cd5123e3bb9f" muted="false"></video>
-    </td>
-</tr>
-</table>
+https://github.com/user-attachments/assets/40ad194b-370a-4a00-9264-67c796e43e12
 
-below is our dependencies, and now is tested under ubuntu22.04 and python3.10+
+
+
+Below are the key components of the project. The entire system was tested on Ubuntu 22.04.
 * avatar: [GitHub - GuijiAI/duix.ai](https://github.com/GuijiAI/duix.ai)
 * vad: [silero-vad](https://github.com/snakers4/silero-vad)
 * asr: [SenseVoice](https://github.com/FunAudioLLM/SenseVoice/)
 * tts: [minimax](https://hailuoai.com/audio)
-* lm: kimi, you can try deepseek and other language models
+* lm: kimi now， it is easy to try deepseek and some other language models，just to change to api url
 
 ## ubuntu 22.04 
 ```bash
@@ -37,7 +34,7 @@ bash web/start.sh
 Not tested
 
 # TODOS
-- [x] use [kikoro tts](https://github.com/remsky/Kokoro-FastAPI)
+- [x] use [kikoro tts](https://github.com/remsky/Kokoro-FastAPI) rather than commercial apis
 
 
 

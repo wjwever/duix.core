@@ -135,7 +135,7 @@ void EdgeRender::startRender() {
       if (wav == "TTS_DONE") {
         metadata["listen"] = 1;
       } else if (wav != "")
-        metadata["wav"] = "http://localhost:6000/" + wav;
+        metadata["wav"] = "http://localhost:8080/" + wav;
 
       std::string metadata_str =
           metadata.dump(-1, ' ', false, json::error_handler_t::ignore);

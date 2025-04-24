@@ -26,17 +26,28 @@ private:
   std::queue<T> queue;
   mutable std::mutex mutex;
   std::condition_variable cond;
+  std::atomic<bool> run;
 
 public:
+  void stop() {
+    run = false;
+  }
+  SafeQueue() {
+    run = true;
+  }
+  ~SafeQueue() {
+    stop();
+  }
   std::string name = "default";
   size_t max_size = 5; // 限制队列大小防止内存溢出
   void push(T &wav) {
     std::unique_lock<std::mutex> lock(mutex);
-    if (cond.wait_for(lock, std::chrono::seconds(1),
+    while(run.load()) {
+        if (cond.wait_for(lock, std::chrono::seconds(1),
                       [this] { return queue.size() < max_size; })) {
-      queue.push(std::move(wav));
-    } else {
-      PLOGE << "SafeQueue " << name << " skip element";
+        queue.push(std::move(wav));
+        break;
+        } 
     }
   }
 
@@ -57,6 +68,9 @@ public:
   EdgeRender();
   ~EdgeRender() {
     _done.store(true);
+    _ttsTasks.stop();
+    _wavs.stop();
+    _frames.stop();
     _thRender.join();
     _thSender.join();
     _thWav.join();

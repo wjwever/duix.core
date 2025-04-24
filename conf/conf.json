@@ -1,10 +1,11 @@
 {
 	"minimax" : {
-		"groupId" : "",
-		"apiKey": ""
+		"groupId" : "1887488082316366476",
+		"apiKey": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJHcm91cE5hbWUiOiLmtbfonrrnlKjmiLdfMzQ0ODI2NDQ1NDQ0MzQxNzY5IiwiVXNlck5hbWUiOiLmtbfonrrnlKjmiLdfMzQ0ODI2NDQ1NDQ0MzQxNzY5IiwiQWNjb3VudCI6IiIsIlN1YmplY3RJRCI6IjE4ODc0ODgwODIzMjg5NDkzODgiLCJQaG9uZSI6IjEzMTYxMDE0ODUxIiwiR3JvdXBJRCI6IjE4ODc0ODgwODIzMTYzNjY0NzYiLCJQYWdlTmFtZSI6IiIsIk1haWwiOiIiLCJDcmVhdGVUaW1lIjoiMjAyNS0wMy0wMiAxMTozMzo0NSIsIlRva2VuVHlwZSI6MSwiaXNzIjoibWluaW1heCJ9.RJv8tmcY4shDN3BuE24a9mfljzxWeZbP6V59bt91X7Bojw8A6OfQOcpRUp7Rij7Kk9EID73FkAnbykYDUzwLSsaQlGNHFYxWvtAtIzczj-7Mth7Fa3x3dS0SiZtAXH9XVcfxRUiTw49fPXJXZkDiiUUC1ymYPLOJCo65NxdTqDWkf-5kf1si23lDu3ZYP4Ys4YXglzURq_IH-XaOOoi05B52F6w91cChBJgpXqqQkIriGjmq7eQENk6iDlJi4-aDSlF-nVo-aJfm2uujRz5OMdf4Tf6efa_McK_TuQJIG8-GBvRy9jmHnIgMxg7-1M4RlpbOQNJOR62Nnd1keKirzQ"
 	},
 	"lmUrl" : "https://api.moonshot.cn/v1",
-	"lmApiKey" : "your api key",
+	"lmApiKey" : "sk-KXhVaI8FcBOaOas0koihbDllHDMXbi0BPBkKicpoX8b3twXP",
 	"lmModel" : "moonshot-v1-8k",
 	"lmPrompt" : "你是一个智能助手,性格可爱,善于助人,每次回复要求：口语化的回复,不要使用mardown的标记格式,不要带表情包，不要超过30个字"
 }
+

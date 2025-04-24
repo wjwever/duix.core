@@ -205,8 +205,7 @@ int main() {
     json metadata;
     metadata["timestamp"] = getCurrentTime();
     metadata["role"].push_back("SiYao");
-    metadata["role"].push_back("ShiYa");
-    metadata["role"].push_back("MuRongXiao");
+    metadata["role"].push_back("DearSister");
     std::string metadata_str =
         metadata.dump(-1, ' ', false, json::error_handler_t::ignore);
     uint32_t metadata_length = static_cast<uint32_t>(metadata_str.size());

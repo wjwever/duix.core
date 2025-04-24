@@ -6,5 +6,8 @@ pip3 install -r requirements.txt   -i https://pypi.doubanio.com/simple/
 echo "download SenseVoiceSmall from huggingface"
 export HF_ENDPOINT="https://hf-mirror.com"
 
-bash ./hfd.sh	FunAudioLLM/SenseVoiceSmall
+mkdir -p models;cd models
+bash ../hfd.sh	FunAudioLLM/SenseVoiceSmall
+cd ..
+python3 ./server.py
 

@@ -172,6 +172,7 @@ async def main():
 
 if __name__ == "__main__":
     asr = ASR.recognizer("test.wav")
+    print(asr)
     if asr != "关注自我成长，享受生活。":
         print("asr self test error, please check")
         exit(0)

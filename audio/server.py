@@ -163,11 +163,11 @@ async def main():
     server = await websockets.serve(
         handle_audio,
         "0.0.0.0",
-        8765,
+        6002,
         ping_interval=None,
         ping_timeout=None    # 无超时限制
     )
-    print("WebSocket server started on ws://0.0.0.0:8765")
+    print("WebSocket server started on ws://0.0.0.0:6002")
     await server.wait_closed()
 
 if __name__ == "__main__":

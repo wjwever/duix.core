@@ -4,6 +4,7 @@ sudo apt install build-essential cmake  wget curl  ffmpeg git libopencv-dev libc
 #cd duix.ai.core
 mkdir -p build; cd build; cmake ../; make -j 4
 cp ../conf . -r
+mkdir -p audio video
 
  
 echo "download resource"

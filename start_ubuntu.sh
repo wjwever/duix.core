@@ -1,8 +1,8 @@
 echo "make"
 sudo apt update
 sudo apt install build-essential cmake  wget curl  ffmpeg git libopencv-dev libcurl4-openssl-dev
-#git clone --recurse-submodules https://github.com/wjwever/duix.core.git
-#cd duix.core
+#git clone --recurse-submodules https://github.com/wjwever/duix.ai.core.git
+#cd duix.ai.core
 mkdir -p build; cd build; cmake ../; make -j 4
 cp ../conf . -r
 

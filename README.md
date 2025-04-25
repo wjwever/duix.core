@@ -1,5 +1,6 @@
 # duix.ai.core
-Hello everyone! this project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
+Hello everyone! </br>
+this project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
 **lightweight**:  The project runs without gpus </br>
 **cheap**:  The project's functions should be deployed locally as much as possible instead of calling commercial APIs </br>
 

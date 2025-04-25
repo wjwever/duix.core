@@ -12,8 +12,8 @@
 <h4 align="center">If you are interested in This project, please kindly give Me a triple `Star`, `Fork` and `Watch`, Thanks!</h4>
 </div>
 
-Hello everyone! This project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
-**Lightweight** means The project runs without gpus </br>
+Hello everyone! This project is dedicated to a **LightWeight and Cheap** digital human dialogue system. </br>
+**LightWeight** means The project runs without gpus </br>
 **Cheap** meas The project's functions should be deployed locally as much as possible instead of calling commercial APIs </br>
 
 https://github.com/user-attachments/assets/40ad194b-370a-4a00-9264-67c796e43e12
@@ -25,7 +25,7 @@ Below are the key components of the project. The entire system was tested on Ubu
 * vad: [silero-vad](https://github.com/snakers4/silero-vad)
 * asr: [SenseVoice](https://github.com/FunAudioLLM/SenseVoice/)
 * tts: [minimax](https://hailuoai.com/audio)
-* lm: kimi now， it is easy to try deepseek and some other language models，just to change the api url vi conf/config.json
+* lm: kimi now， it is easy to try deepseek and some other language models，just to change the api url in conf/config.json
 
 ## ubuntu 22.04 
 ```bash

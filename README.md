@@ -12,7 +12,7 @@ Below are the key components of the project. The entire system was tested on Ubu
 * vad: [silero-vad](https://github.com/snakers4/silero-vad)
 * asr: [SenseVoice](https://github.com/FunAudioLLM/SenseVoice/)
 * tts: [minimax](https://hailuoai.com/audio)
-* lm: kimi now， it is easy to try deepseek and some other language models，just to change to api url
+* lm: kimi now， it is easy to try deepseek and some other language models，just to change the api url vi conf/config.json
 
 ## ubuntu 22.04 
 ```bash
@@ -26,7 +26,7 @@ bash start_avatar.sh
 #start asr websocket server at port 6002
 bash audio/start_audio_server.sh
 
-#start ui , open http://localhost:6003 by google browser and give it a trye
+#start ui , open http://localhost:6003 by google browser and give it a try
 bash web/start.sh
 
 ```

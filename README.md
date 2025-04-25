@@ -1,8 +1,8 @@
 # duix.ai.core
 Hello everyone! </br>
-this project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
-**lightweight**:  The project runs without gpus </br>
-**cheap**:  The project's functions should be deployed locally as much as possible instead of calling commercial APIs </br>
+This project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
+**Lightweight**:  The project runs without gpus </br>
+**Cheap**:  The project's functions should be deployed locally as much as possible instead of calling commercial APIs </br>
 
 https://github.com/user-attachments/assets/40ad194b-370a-4a00-9264-67c796e43e12
 

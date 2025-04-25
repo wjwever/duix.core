@@ -1,3 +1,4 @@
+<h1 align="center">duix.ai.core </h1>
 <div class="column" align="middle">
   <p align="center">
   </p>
@@ -11,11 +12,9 @@
 <h4 align="center">If you are interested in This project, please kindly give Me a triple `Star`, `Fork` and `Watch`, Thanks!</h4>
 </div>
 
-# duix.ai.core
-Hello everyone! </br>
-This project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
-**Lightweight**:  The project runs without gpus </br>
-**Cheap**:  The project's functions should be deployed locally as much as possible instead of calling commercial APIs </br>
+Hello everyone! This project is dedicated to a **lightweight and cheap** digital human dialogue system. </br>
+**Lightweight** means The project runs without gpus </br>
+**Cheap** meas The project's functions should be deployed locally as much as possible instead of calling commercial APIs </br>
 
 https://github.com/user-attachments/assets/40ad194b-370a-4a00-9264-67c796e43e12
 

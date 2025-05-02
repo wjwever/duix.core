@@ -1,0 +1,16 @@
+fastapi>=0.68.0
+uvicorn>=0.15.0
+websockets
+python-multipart
+loguru
+librosa
+torch>=1.13
+torchaudio
+modelscope
+huggingface
+huggingface_hub
+funasr
+numpy
+gradio
+websockets
+silero_vad==5.1

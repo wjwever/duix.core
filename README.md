@@ -81,7 +81,7 @@ docker run -d \
 
 # TODOS
 - [x] use [kikoro tts](https://github.com/remsky/Kokoro-FastAPI) rather than commercial apis
-- [x] Optimize docker workflow
+- [ ] Optimize docker workflow
 
 
 

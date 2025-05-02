@@ -43,6 +43,9 @@ bash audio/start_audio_server.sh
 bash web/start_web.sh
 
 ```
+## macos
+Not tested
+
 ## Docker Deployment(Building)
 ```bash
 # Build the image
@@ -61,9 +64,6 @@ docker run -d \
 - Integrated HuggingFace model download with mirror support
 - Supervisord process management for multiple services
 - Preconfigured Python environment with all dependencies
-```
-## macos
-Not tested
 
 ## FAQ
 1. The first build requires downloading ~2GB model files, ensure stable network connection

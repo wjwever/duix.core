@@ -27,27 +27,61 @@ Below are the key components of the project. The entire system was tested on Ubu
 * tts: [minimax](https://hailuoai.com/audio)
 * lm: kimi now， it is easy to try deepseek and some other language models，just to change the api url in conf/config.json
 
-## ubuntu 22.04 
+## Tested environment: ubuntu 22.04
 ```bash
 git clone --recurse-submodules https://github.com/wjwever/duix.ai.core.git 
 cd duix.ai.core
 
-#start avatar websocket server at port 6001, directory duix.ai.core/build
-#remember to user your apikey in conf/config.json, current apiKey is only for test
+# Rtart avatar websocket server at port 6001, directory duix.ai.core/build
+# Remember to user your apikey in conf/config.json, current apiKey is only for test
 bash start_avatar.sh
 
 #start asr websocket server at port 6002
 bash audio/start_audio_server.sh
 
 #start ui , open http://localhost:6003 by google browser and give it a try
-bash web/start.sh
+bash web/start_web.sh
 
+```
+## Docker Deployment(Building)
+```bash
+# Build the image
+docker build -t duix-ai .
+# Run the container (example)
+docker run -d \
+  -p 6001-6003:6001-6003 \
+  -p 38080:8080 \
+  -e MINIMAX_API_KEY=your_minimax_api_key \
+  -e LM_API_KEY=your_lm_api_key \
+  duix-ai
+```
+
+### Docker Configuration Details:
+- Multi-stage build to minimize image size
+- Integrated HuggingFace model download with mirror support
+- Supervisord process management for multiple services
+- Preconfigured Python environment with all dependencies
 ```
 ## macos
 Not tested
 
+## FAQ
+1. The first build requires downloading ~2GB model files, ensure stable network connection
+2. If encountering model download issues, set HF_TOKEN environment variable:
+```bash
+   export HF_TOKEN=your_huggingface_token
+```
+3. Audio service requires these system dependencies:
+   - portaudio19-dev
+   - ffmpeg
+4. For Python dependency conflicts, try rebuilding Docker image without cache:
+```bash
+   docker build --no-cache -t duix-ai .
+```
+
 # TODOS
 - [x] use [kikoro tts](https://github.com/remsky/Kokoro-FastAPI) rather than commercial apis
+- [x] Optimize docker workflow
 
 
 

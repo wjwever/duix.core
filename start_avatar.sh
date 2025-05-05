@@ -1,13 +1,17 @@
 sudo apt update
-sudo apt install build-essential cmake  wget curl  ffmpeg git libopencv-dev libcurl4-openssl-dev
+echo "Installing relevant dependencies"
+sudo apt install build-essential cmake  wget curl  ffmpeg git libopencv-dev libcurl4-openssl-dev libboost-all-dev -y
 #git clone --recurse-submodules https://github.com/wjwever/duix.ai.core.git
 #cd duix.ai.core
-mkdir -p build; cd build; cmake ../; make -j 4
+mkdir -p build; 
+cd build; 
+cmake ../; 
+make -j$(($(nproc) - 1));
 cp ../conf . -r
 mkdir -p audio video
 
  
-echo "download resource"
+echo "Download relevant Resource"
 if [ ! -d gj_dh_res ]; then
 	wget https://cdn.guiji.ai/duix/location/gj_dh_res.zip
 	unzip gj_dh_res.zip

@@ -1,3 +1,5 @@
-third/onnxruntime-linux-x64-1.21.0 filter=lfs diff=lfs merge=lfs -text
-third/turbojpeg filter=lfs diff=lfs merge=lfs -text
-third/ncnn filter=lfs diff=lfs merge=lfs -text
+third/onnxruntime-linux-x64-1.21.0/lib/libonnxruntime.so filter=lfs diff=lfs merge=lfs -text
+third/onnxruntime-linux-x64-1.21.0/lib/libonnxruntime_providers_shared.so filter=lfs diff=lfs merge=lfs -text
+third/ncnn/lib/libncnn.so filter=lfs diff=lfs merge=lfs -text
+third/turbojpeg/libturbojpeg.so filter=lfs diff=lfs merge=lfs -text
+third/turbojpeg/libturbojpeg.a filter=lfs diff=lfs merge=lfs -text

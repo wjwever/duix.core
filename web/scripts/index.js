@@ -8,7 +8,7 @@ const audioInfo = document.getElementById('audioInfo');
 const loadingIndicator = document.getElementById('loading');
 
 // microphone
-let audioWs;
+//let audioWs;
 let listen = true;
 let mediaStream;
 let audioContext;
@@ -138,30 +138,31 @@ async function startCapture() {
 
         // 每200ms发送一次音频数据
         interval = setInterval(() => {
-            if (audioChunks.length > 0 && audioWs && audioWs.readyState === WebSocket.OPEN) {
+            if (audioChunks.length > 0 && ws && ws.readyState === WebSocket.OPEN) {
                 const merged = mergeArrays(audioChunks);
-                const int16Data = floatTo16BitPCM(merged);
+                ///const int16Data = floatTo16BitPCM(merged);
 
                 // Create metadata object
                 const metadata = {
                     event: 'audio',
                     sampleRate: audioContext.sampleRate,
                     timestamp: Date.now(),
-                    length: int16Data.length
+                    length: merged.length,
+                    audioData: Array.from(merged)
                 };
 
                 // Send as JSON string with binary data
                 if (listen) {
-                    audioWs.send(JSON.stringify({
-                        metadata: metadata,
-                        audioData: Array.from(int16Data)
-                    }));
-                } else {
-                    audioWs.send(JSON.stringify({
+                    ws.send(JSON.stringify(metadata));
+                } 
+                /*
+                else {
+                    ws.send(JSON.stringify({
                         metadata: metadata,
                         audioData: Array.from(int16Data).fill(0)
                     }));
                 }
+                */
 
                 audioChunks = [];
             }
@@ -229,19 +230,20 @@ function connectWebSocket() {
 
   ws.onopen = () => {
     lastFpsUpdate = performance.now();
-    logMessage("avatar websocket server connected!")
+    logMessage("avatar websocket server localhost:6001 connected!")
   };
 
   ws.onclose = () => {
-    errMessage("avatar websocket server disconnected!")
+    errMessage("avatar websocket server localhost:6001 disconnected!")
   };
 
   ws.onerror = (error) => {
     console.error('WebSocket error:', error);
-    errMessage("avatar websocket server error!");
+    errMessage("avatar websocket server localhost:6001 error!");
   };
 }
 
+/*
 function connectAudioWebSocket() {
     if (audioWs && audioWs.readyState === WebSocket.OPEN) {
         errMessage('audioWs already connected')
@@ -267,8 +269,9 @@ function connectAudioWebSocket() {
         }
     };
 }
-connectWebSocket();
 connectAudioWebSocket();
+*/
+connectWebSocket();
 
 
 ws.onmessage = function(event) {
@@ -305,6 +308,11 @@ ws.onmessage = function(event) {
       if ("listen" in metadata) {
         logMessage("listen enable");
         listen = true;
+      }
+      if ("asr" in metadata) {
+        logMessage("asr:" + metadata.asr);
+        logMessage("listen disable");
+        listen = false; 
       }
 
 			// 获取图像二进制数据

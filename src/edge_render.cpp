@@ -132,6 +132,13 @@ void EdgeRender::startRender() {
 
       json metadata;
       metadata["timestamp"] = getCurrentTime();
+      {
+        std::lock_guard<std::mutex> lk(_mx_asr);
+        if (_asr.size() > 0) {
+          metadata["asr"] = _asr;
+          _asr = "";
+        }
+      }
       if (wav == "TTS_DONE") {
         metadata["listen"] = 1;
       } else if (wav != "")

@@ -5,6 +5,7 @@
 #include "lm_client.h"
 #include "tts.h"
 #include "util.h"
+#include "asr.h"
 #include <edge_render.h>
 #include <future>
 #include <getopt.hpp>
@@ -22,6 +23,7 @@ using websocketpp::lib::placeholders::_1;
 using websocketpp::lib::placeholders::_2;
 
 struct WorkFLow {
+  std::shared_ptr<Asr> _asr = nullptr;
   std::shared_ptr<LmClient> _lmClient = nullptr;
   std::shared_ptr<EdgeRender> _render = nullptr;
   std::function<void(std::vector<uint8_t> &data)> _sendBinary = nullptr;
@@ -56,9 +58,13 @@ struct WorkFLow {
         _render->_ttsTasks.push(fut);
       }
     };
+    _asr = std::make_shared<Asr>("data/model.onnx", "data/tokens.txt", "data/silero_vad.onnx");
+    _asr->_onAsr = std::bind(&WorkFLow::chat, this, std::placeholders::_1);
     return 0;
   }
   void chat(const std::string &query) {
+    // send mute
+    _render->setAsr(query);
     if (_lmClient) {
       // TODO use thread pool later
       std::thread th(&LmClient::request, this->_lmClient, query);
@@ -127,10 +133,10 @@ void onMsg(server *s, websocketpp::connection_hdl hdl, const std::string &msg) {
 
 void on_message(server *s, websocketpp::connection_hdl hdl,
                 server::message_ptr msg) {
-  PLOGI << "Received: " << msg->get_payload();
   auto root = json::parse(msg->get_payload());
   std::string event = root.value("event", "none");
   if (event == "init") {
+    PLOGI << "Received: " << msg->get_payload();
     std::string role = root.value("role", "SiYao");
     auto flow = connectionManager.get(hdl);
     int ret = flow->init(std::bind(onImg, s, hdl, std::placeholders::_1),
@@ -139,12 +145,20 @@ void on_message(server *s, websocketpp::connection_hdl hdl,
     s->send(hdl, "init " + std::to_string(ret),
             websocketpp::frame::opcode::text);
   } else if (event == "query") { // keyborad input
+    PLOGI << "Received: " << msg->get_payload();
     std::string query = root.value("value", "介绍一下你自己好吗");
     auto flow = connectionManager.get(hdl);
     if (flow) {
       flow->chat(query);
     }
     // s->send(hdl, "text:" + query, websocketpp::frame::opcode::text);
+  } else if (event == "audio") {
+    auto sampleRate = root.value("sampleRate", 16000);
+    auto audioVec = root["audioData"].get<std::vector<float>>();
+
+    PLOGI << "Received audio " << audioVec.size();
+    auto flow = connectionManager.get(hdl);
+    flow->_asr->push_data(audioVec, sampleRate);
   }
 };
 
@@ -188,7 +202,7 @@ int main() {
   svr.set_mount_point("/audio", "audio");
   std::thread httpth(
       [&svr] { svr.listen("0.0.0.0", 8080); }); // fix later, http never exits
-  PLOGD << "http server start at 8080";
+  PLOGI << "http server start at 8080";
 
   server ws_server;
   ws_server.set_access_channels(websocketpp::log::alevel::none);

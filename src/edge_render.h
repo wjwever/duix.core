@@ -102,6 +102,13 @@ public:
   std::thread _thSender;
   std::thread _thWav;
 
+  std::string _asr;
+  std::mutex _mx_asr;
+  void setAsr(const std::string& asr) {
+    std::lock_guard<std::mutex> lk(_mx_asr);
+    _asr = asr;
+  }
+
   ImgHdl _imgHdl;
   MsgHdl _msgHdl;
 };

@@ -1,0 +1,3 @@
+third/onnxruntime-linux-x64-1.21.0 filter=lfs diff=lfs merge=lfs -text
+third/turbojpeg filter=lfs diff=lfs merge=lfs -text
+third/ncnn filter=lfs diff=lfs merge=lfs -text

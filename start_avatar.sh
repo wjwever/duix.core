@@ -29,5 +29,5 @@ unzip bendi1_0329.zip
 mv bendi1_0329 roles/DearSister
 fi
 
-./ws_server 
+./bin/ws_server 
 

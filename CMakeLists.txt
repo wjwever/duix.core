@@ -4,18 +4,22 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(kaldi-native-fbank)                                                                                             
+include(libsamplerate)                                                                                                  
+
 
 find_package(Git REQUIRED)
 find_package(CURL REQUIRED)
-
 execute_process (
     COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
     OUTPUT_VARIABLE GIT_COMMIT_ID
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 message(STATUS "Git commit ID:" ${GIT_COMMIT_ID})
-
-
 add_definitions(-DCOMMIT_ID="${GIT_COMMIT_ID}")
 
 # 查找 OpenCV 包
@@ -33,8 +37,6 @@ message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 # include_directories(${JPEG_INCLUDE_DIRS})
 # message(STATUS "JPEG_INCLUDE_DIRS=${JPEG_INCLUDE_DIRS}")
 # message(STATUS "JPEG_LIBRARIES=${JPEG_LIBRARIES}")
-
-
 #find_package(OpenMP REQUIRED)
 
 
@@ -57,6 +59,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/third/turbojpeg/include
     ${CMAKE_SOURCE_DIR}/modules/getopt/
     ${CMAKE_SOURCE_DIR}/modules/websocketpp/
+    ${CMAKE_SOURCE_DIR}/audio/src/
 )
 
 link_directories(
@@ -74,13 +77,14 @@ file(GLOB BASE_C ${CMAKE_SOURCE_DIR}/base/*.c)
 file(GLOB BASE_CPP ${CMAKE_SOURCE_DIR}/base/*.cpp)
 file(GLOB AISDK_CPP ${CMAKE_SOURCE_DIR}/aisdk/*.cpp)
 file(GLOB MAIN_CPP ${CMAKE_SOURCE_DIR}/src/*.cpp)
+file(GLOB AUDIO_CPP ${CMAKE_SOURCE_DIR}/audio/src/*.cpp)
 
 
 add_library(render STATIC ${MAIN_CPP} ${AES_SRC} ${DIGIT_C} ${DIGIT_CPP} ${BASE_CPP} ${AISDK_CPP} base/cJSON.c base/dh_mem.c)
 
 add_executable(offline ${CMAKE_SOURCE_DIR}/src/offline.cc)
 target_link_libraries(offline
-	render
+    render
     avformat
     avcodec
     avutil
@@ -88,14 +92,14 @@ target_link_libraries(offline
     CURL::libcurl
     onnxruntime
     ncnn
-	#OpenMP::OpenMP_CXX
+    #OpenMP::OpenMP_CXX
     turbojpeg
     ${OpenCV_LIBS}
 )
 
 add_executable(http_server ${CMAKE_SOURCE_DIR}/src/http_server.cc)
 target_link_libraries(http_server
-	render	
+    render	
     avformat
     avcodec
     avutil
@@ -103,14 +107,14 @@ target_link_libraries(http_server
     CURL::libcurl
     onnxruntime
     ncnn
-	#OpenMP::OpenMP_CXX
+    #OpenMP::OpenMP_CXX
     turbojpeg
     ${OpenCV_LIBS}
 )
 
-add_executable(ws_server ${CMAKE_SOURCE_DIR}/src/ws_server.cc)
+add_executable(ws_server ${CMAKE_SOURCE_DIR}/src/ws_server.cc ${AUDIO_CPP})
 target_link_libraries(ws_server
-	render
+    render
     avformat
     avcodec
     avutil
@@ -118,7 +122,9 @@ target_link_libraries(ws_server
     CURL::libcurl
     onnxruntime
     ncnn
-	#OpenMP::OpenMP_CXX
+    #OpenMP::OpenMP_CXX
     turbojpeg
     ${OpenCV_LIBS}
+    kaldi-native-fbank-core
+    samplerate
 )

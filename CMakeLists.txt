@@ -10,6 +10,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(kaldi-native-fbank)                                                                                             
 include(libsamplerate)                                                                                                  
+include(nlohmann_json)                                                                                                  
+include(websocketpp)                                                                                                  
 
 
 find_package(Git REQUIRED)
@@ -49,7 +51,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/base
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/aisdk
-    ${CMAKE_SOURCE_DIR}/modules/json/include
     ${CMAKE_SOURCE_DIR}/aes
     ${OpenCV_INCLUDE_DIRS}
     ${FFMPEG}/include
@@ -57,8 +58,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/third/ncnn/include/ncnn
     ${CMAKE_SOURCE_DIR}/third/onnxruntime-linux-x64-1.21.0/include
     ${CMAKE_SOURCE_DIR}/third/turbojpeg/include
-    ${CMAKE_SOURCE_DIR}/modules/getopt/
-    ${CMAKE_SOURCE_DIR}/modules/websocketpp/
     ${CMAKE_SOURCE_DIR}/audio/src/
 )
 

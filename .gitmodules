@@ -1,9 +1,0 @@
-[submodule "modules/json"]
-	path = modules/json
-	url = https://github.com/nlohmann/json
-[submodule "modules/getopt"]
-	path = modules/getopt
-	url = https://github.com/r-lyeh-archived/getopt
-[submodule "modules/websocketpp"]
-	path = modules/websocketpp
-	url = https://github.com/zaphoyd/websocketpp.git

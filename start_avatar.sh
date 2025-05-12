@@ -10,6 +10,16 @@ make -j$(($(nproc) - 1));
 cp ../conf . -r
 mkdir -p audio video
 
+echo "Download vad & asr model"
+if [ ! -f silero_vad.onnx ]; then
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx
+fi
+
+if [ ! -d sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17 ];then
+    wget https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17.tar.bz2
+    tar xvf sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17.tar.bz2
+    rm sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17.tar.bz2
+fi
  
 echo "Download relevant Resource"
 if [ ! -d gj_dh_res ]; then

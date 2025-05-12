@@ -58,7 +58,7 @@ struct WorkFLow {
         _render->_ttsTasks.push(fut);
       }
     };
-    _asr = std::make_shared<Asr>("data/model.onnx", "data/tokens.txt", "data/silero_vad.onnx");
+    _asr = std::make_shared<Asr>("sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17/model.onnx", "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17/tokens.txt", "silero_vad.onnx");
     _asr->_onAsr = std::bind(&WorkFLow::chat, this, std::placeholders::_1);
     return 0;
   }

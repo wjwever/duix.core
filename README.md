@@ -36,9 +36,6 @@ cd duix.ai.core
 # Remember to user your apikey in conf/config.json, current apiKey is only for test
 bash start_avatar.sh
 
-#start asr websocket server at port 6002
-bash audio/start_audio_server.sh
-
 #start ui , open http://localhost:6003 by google browser and give it a try
 bash web/start_web.sh
 
@@ -61,26 +58,13 @@ docker run -d \
 
 ### Docker Configuration Details:
 - Multi-stage build to minimize image size
-- Integrated HuggingFace model download with mirror support
 - Supervisord process management for multiple services
-- Preconfigured Python environment with all dependencies
 
 ## FAQ
 1. The first build requires downloading ~2GB model files, ensure stable network connection
-2. If encountering model download issues, set HF_TOKEN environment variable:
-```bash
-   export HF_TOKEN=your_huggingface_token
-```
-3. Audio service requires these system dependencies:
-   - portaudio19-dev
-   - ffmpeg
-4. For Python dependency conflicts, try rebuilding Docker image without cache:
-```bash
-   docker build --no-cache -t duix-ai .
-```
 
 # TODOS
-- [x] use [kikoro tts](https://github.com/remsky/Kokoro-FastAPI) rather than commercial apis
+- [ ] use [kikoro tts](https://github.com/remsky/Kokoro-FastAPI) rather than commercial apis
 - [ ] Optimize docker workflow
 
 
